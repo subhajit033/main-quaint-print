@@ -5,6 +5,17 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import api from '@/api';
 import { loadScript } from '@/utils/loadscript';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -12,7 +23,11 @@ const Cart = () => {
   const userDetails = useSelector((store) => store.auth.userData);
   const totalCartValue = getTotalCartValue(cartItem);
   const [cartValue, setCartValue] = useState(totalCartValue);
+  const [isDia1Open, setIsDia1Open] = useState(false);
+  const [isDia2Open, setIsDia2Open] = useState(false);
+  const [address, setAddress] = useState();
   const [cartIds, setCartIds] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
   useEffect(() => {
     setCartValue(getTotalCartValue(cartItem));
   }, [cartItem]);
@@ -22,9 +37,16 @@ const Cart = () => {
     setCartIds(cartItem.map((item) => item._id));
   }, [cartItem]);
 
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+  };
+
   console.log(cartIds);
 
-  async function displayRazorpay() {
+  async function displayRazorpay(e) {
+    e.preventDefault();
+    // e.preventDefault();
     const res = await loadScript(
       'https://checkout.razorpay.com/v1/checkout.js'
     );
@@ -75,10 +97,11 @@ const Cart = () => {
         email: userDetails?.email,
       },
       redirect: 'true',
-      callback_url: `https://quaint-print-server.onrender.com/api/v1/payments/verify-payment`,
+      callback_url: `http://localhost:3000/api/v1/payments/verify-payment`,
       notes: {
         cartIds: cartIds.join(',').toString(),
         userId: userDetails._id,
+        address: JSON.stringify(address),
       },
       theme: {
         color: '#61dafb',
@@ -88,6 +111,9 @@ const Cart = () => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   }
+  useEffect(() => {
+    setAddress({ ...userDetails?.address });
+  }, [isChecked]);
 
   return (
     <div>
@@ -104,11 +130,223 @@ const Cart = () => {
             <h4 className='text-xl'>Total Cart value</h4>
             <h4 className='text-2xl text-blue-500 font-bold'>{`₹${cartValue} /-`}</h4>
           </div>
-          <Button onClick={displayRazorpay} className='bg-blue-500'>
-            Pay ₹{cartValue} /-
+          <Button onClick={() => setIsDia1Open(true)} className='bg-blue-500'>
+            Checkout
           </Button>
         </div>
       )}
+      <Dialog open={isDia1Open}>
+        <DialogContent className='max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px]'>
+          <DialogHeader>
+            <DialogTitle>Confirm Your Address?</DialogTitle>
+            <DialogDescription>
+              {userDetails?.address ? (
+                <div className='flex items-center space-x-2'>
+                  <Checkbox
+                    id='terms'
+                    checked={isChecked}
+                    onCheckedChange={() => setIsChecked(!isChecked)}
+                  />
+                  <label
+                    htmlFor='terms'
+                    className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                  >
+                    Use address which is on Your Profile
+                  </label>
+                </div>
+              ) : (
+                <p>
+                  You have not update you address detail , please fill the below
+                  details
+                </p>
+              )}
+              <form className='my-4'>
+                <p className='font-semibold text-gray-500'>Address</p>
+                <div className='grid grid-cols-1 md:grid-cols-6 gap-4 items-center'>
+                  <div className='grid col-span-2 w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      id='address1'
+                      placeholder='Address Line 1'
+                      required
+                      value={address?.addressLine1}
+                      onChange={handleChangeInput}
+                      name='addressLine1'
+                    />
+                  </div>
+                  <div className='grid w-full col-span-2 max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      placeholder='Address Line 2'
+                      onChange={handleChangeInput}
+                      value={address?.addressLine2}
+                      name='addressLine2'
+                    />
+                  </div>
+                  <div className='grid w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='City'
+                      onChange={handleChangeInput}
+                      value={address?.city}
+                      name='city'
+                    />
+                  </div>
+                  <div className='grid w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      placeholder='State'
+                      onChange={handleChangeInput}
+                      value={address?.state}
+                      required
+                      name='state'
+                    />
+                  </div>
+                  <div className='grid  w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='Zip/Postal Code'
+                      onChange={handleChangeInput}
+                      value={address?.zipCode}
+                      name='zipCode'
+                    />
+                  </div>
+                  <div className='grid grid-cols-1 w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='Country'
+                      onChange={handleChangeInput}
+                      value={address?.country}
+                      name='country'
+                    />
+                  </div>
+                </div>
+                <DialogFooter className='sm:justify-start mt-4'>
+                  <Button
+                    onClick={() => setIsDia1Open(false)}
+                    type='button'
+                    className='bg-red-500 hover:bg-red-400'
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsDia1Open(false), setIsDia2Open(true);
+                    }}
+                    type='submit'
+                  >
+                    {'Proceed ->'}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+      {/**Dialog 2 */}
+      <Dialog open={isDia2Open}>
+        <DialogContent className='max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px]'>
+          <DialogHeader>
+            <DialogTitle>Details At glance</DialogTitle>
+            <DialogDescription>
+              <form className='my-4'>
+                <p className='font-semibold text-gray-500'>Address</p>
+                <div className='grid grid-cols-1 md:grid-cols-6 gap-4 items-center'>
+                  <div className='grid col-span-2 w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      id='address1'
+                      placeholder='Address Line 1'
+                      required
+                      disabled={true}
+                      value={address?.addressLine1}
+                      onChange={handleChangeInput}
+                      name='addressLine1'
+                    />
+                  </div>
+                  {address?.addressLine2 && (
+                    <div className='grid w-full col-span-2 max-w-sm items-center gap-1.5'>
+                      <Input
+                        type='text'
+                        placeholder='Address Line 2'
+                        disabled={true}
+                        onChange={handleChangeInput}
+                        value={address?.addressLine2}
+                        name='addressLine2'
+                      />
+                    </div>
+                  )}
+                  <div className='grid w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='City'
+                      disabled={true}
+                      onChange={handleChangeInput}
+                      value={address?.city}
+                      name='city'
+                    />
+                  </div>
+                  <div className='grid w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      placeholder='State'
+                      onChange={handleChangeInput}
+                      disabled={true}
+                      value={address?.state}
+                      required
+                      name='state'
+                    />
+                  </div>
+                  <div className='grid  w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='Zip/Postal Code'
+                      disabled={true}
+                      onChange={handleChangeInput}
+                      value={address?.zipCode}
+                      name='zipCode'
+                    />
+                  </div>
+                  <div className='grid grid-cols-1 w-full max-w-sm items-center gap-1.5'>
+                    <Input
+                      type='text'
+                      required
+                      placeholder='Country'
+                      disabled={true}
+                      onChange={handleChangeInput}
+                      value={address?.country}
+                      name='country'
+                    />
+                  </div>
+                </div>
+              </form>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className='sm:justify-start mt-4'>
+            <Button
+              onClick={() => setIsDia2Open(false)}
+              type='button'
+              className='bg-red-500 hover:bg-red-400'
+            >
+              Close
+            </Button>
+            <Button
+              onClick={(e) => {
+                setIsDia2Open(false), displayRazorpay(e);
+              }}
+              type='button'
+            >
+              {`Pay ₹${totalCartValue}`}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

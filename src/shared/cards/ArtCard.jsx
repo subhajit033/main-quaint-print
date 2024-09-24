@@ -8,7 +8,14 @@ import { useEffect, useState } from 'react';
 import { deleteCartItem, setCartItem } from '@/redux/cart.slice';
 import toast from 'react-hot-toast';
 
-const ArtCard = ({ title, _id, paintingThought, picture, price }) => {
+const ArtCard = ({
+  title,
+  _id,
+  paintingThought,
+  picture,
+  price,
+  paintingType,
+}) => {
   const isAuthenticated = useSelector((store) => store.auth.isAuthenticated);
   const cartItem = useSelector((store) => store.cart.cartItem);
   const [size, setSize] = useState(price[0]?.size);
@@ -18,7 +25,7 @@ const ArtCard = ({ title, _id, paintingThought, picture, price }) => {
   const isPresentInCart = cartItem.some((item) => item.title === title);
   const artTitle = title;
   const artPrice = price;
-  console.log(price);
+  console.log(paintingType);
   const handlePrice = () => {
     setProductPrice(price.filter((data) => data.size === size)[0]?.price);
     console.log(price.filter((data) => data.size === size));
@@ -43,6 +50,7 @@ const ArtCard = ({ title, _id, paintingThought, picture, price }) => {
         title: artTitle,
         image: picture,
         price: productPrice,
+        paintingType,
         size,
       });
 
@@ -96,10 +104,10 @@ const ArtCard = ({ title, _id, paintingThought, picture, price }) => {
 
         {/* Product details */}
         <div className='md:w-[45%] mt-8'>
-        <h2 className='text-2xl font-bold mb-2'>Title:-{title}</h2>
+          <h2 className='text-2xl font-bold mb-2'>Title:-{title}</h2>
 
           <div className='mb-4'>
-          <p className='mb-2 text-lg font-semibold'>Recommended sizes:</p>
+            <p className='mb-2 text-lg font-semibold'>Recommended sizes:</p>
             <RadioGroup
               onValueChange={(value) => setSize(value)}
               className='flex'
@@ -116,13 +124,15 @@ const ArtCard = ({ title, _id, paintingThought, picture, price }) => {
             </RadioGroup>
           </div>
 
-          <p className='text-black-600 font-semibold  text-base  md:h-36'>{paintingThought}</p>
+          <p className='text-black-600 font-semibold  text-base  md:h-36'>
+            {paintingThought}
+          </p>
 
           <div className='flex items-end justify-between'>
             <span className='text-4xl text-red-500  font-bold'>{`₹ ${productPrice}/-`}</span>
             <button
               onClick={() => addToCart(true)}
-           className='bg-gray-200 text-lg font-semibold text-black px-8 py-3 rounded-lg'
+              className='bg-gray-200 text-lg font-semibold text-black px-8 py-3 rounded-lg'
             >
               Order Now
             </button>
