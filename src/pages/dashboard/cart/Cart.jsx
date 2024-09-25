@@ -160,7 +160,13 @@ const Cart = () => {
                   details
                 </p>
               )}
-              <form className='my-4'>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setIsDia1Open(false), setIsDia2Open(true);
+                }}
+                className='my-4'
+              >
                 <p className='font-semibold text-gray-500'>Address</p>
                 <div className='grid grid-cols-1 md:grid-cols-6 gap-4 items-center'>
                   <div className='grid col-span-2 w-full max-w-sm items-center gap-1.5'>
@@ -232,15 +238,7 @@ const Cart = () => {
                   >
                     Close
                   </Button>
-                  <Button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsDia1Open(false), setIsDia2Open(true);
-                    }}
-                    type='submit'
-                  >
-                    {'Proceed ->'}
-                  </Button>
+                  <Button type='submit'>{'Proceed ->'}</Button>
                 </DialogFooter>
               </form>
             </DialogDescription>
@@ -253,79 +251,42 @@ const Cart = () => {
           <DialogHeader>
             <DialogTitle>Details At glance</DialogTitle>
             <DialogDescription>
-              <form className='my-4'>
-                <p className='font-semibold text-gray-500'>Address</p>
-                <div className='grid grid-cols-1 md:grid-cols-6 gap-4 items-center'>
-                  <div className='grid col-span-2 w-full max-w-sm items-center gap-1.5'>
-                    <Input
-                      type='text'
-                      id='address1'
-                      placeholder='Address Line 1'
-                      required
-                      disabled={true}
-                      value={address?.addressLine1}
-                      onChange={handleChangeInput}
-                      name='addressLine1'
-                    />
-                  </div>
-                  {address?.addressLine2 && (
-                    <div className='grid w-full col-span-2 max-w-sm items-center gap-1.5'>
-                      <Input
-                        type='text'
-                        placeholder='Address Line 2'
-                        disabled={true}
-                        onChange={handleChangeInput}
-                        value={address?.addressLine2}
-                        name='addressLine2'
-                      />
-                    </div>
-                  )}
-                  <div className='grid w-full max-w-sm items-center gap-1.5'>
-                    <Input
-                      type='text'
-                      required
-                      placeholder='City'
-                      disabled={true}
-                      onChange={handleChangeInput}
-                      value={address?.city}
-                      name='city'
-                    />
-                  </div>
-                  <div className='grid w-full max-w-sm items-center gap-1.5'>
-                    <Input
-                      type='text'
-                      placeholder='State'
-                      onChange={handleChangeInput}
-                      disabled={true}
-                      value={address?.state}
-                      required
-                      name='state'
-                    />
-                  </div>
-                  <div className='grid  w-full max-w-sm items-center gap-1.5'>
-                    <Input
-                      type='text'
-                      required
-                      placeholder='Zip/Postal Code'
-                      disabled={true}
-                      onChange={handleChangeInput}
-                      value={address?.zipCode}
-                      name='zipCode'
-                    />
-                  </div>
-                  <div className='grid grid-cols-1 w-full max-w-sm items-center gap-1.5'>
-                    <Input
-                      type='text'
-                      required
-                      placeholder='Country'
-                      disabled={true}
-                      onChange={handleChangeInput}
-                      value={address?.country}
-                      name='country'
-                    />
-                  </div>
+              <div className='flex justify-between items-start'>
+                {/**Adress Summary */}
+                <div className='text-black'>
+                  <h1 className='text-xl font-semibold'>Delivery Details</h1>
+                  <p>{`${userDetails?.firstName} ${userDetails?.lastName}`}</p>
+                  <p>{address?.addressLine1}</p>
+                  {address?.addressLine2 && <p>{address?.addressLine2}</p>}
+                  <p>{`${address?.city} , ${address?.state} , ${address?.zipCode}`}</p>
+                  <p>{`${address?.country}`}</p>
                 </div>
-              </form>
+                {/**Order Summary */}
+                <div className='space-y-1 text-black font-semibold'>
+                  <h1 className='text-xl font-semibold'>Order Summary:</h1>
+                  {cartItem.map((item, i) => {
+                    return (
+                      <p key={i}>
+                        {`${item?.price} X ${item.quantity} = ${
+                          Number(item?.price) * Number(item?.quantity)
+                        }`}
+                      </p>
+                    );
+                  })}
+                  {/* <p>1500 X 2 = 3000</p>
+                  <p>1500 X 2 = 3000</p>
+                  <p>1500 X 2 = 3000</p> */}
+                  <div className='h-[2px] w-full bg-black' />
+                  <p className='text-xl font-semibold text-blue-500'>
+                    Total Value - {cartValue}
+                  </p>
+                </div>
+              </div>
+              <div className='space-y-2 mt-2'>
+                {cartItem.map((item, i) => {
+                  return <CartItem key={i} billing={true} {...item} />;
+                })}
+              </div>
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className='sm:justify-start mt-4'>
