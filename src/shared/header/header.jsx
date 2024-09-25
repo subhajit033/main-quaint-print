@@ -39,10 +39,16 @@ const Header = () => {
           >
             Personalize Prints
           </Link>
-          <Link to={'/artwork-print'} className='font-semibold text-lg text-black-500'>
+          <Link
+            to={'/artwork-print'}
+            className='font-semibold text-lg text-black-500'
+          >
             Artwork Print
           </Link>
-          <Link to={'/other-print'} className='font-semibold text-lg text-black-500'>
+          <Link
+            to={'/other-print'}
+            className='font-semibold text-lg text-black-500'
+          >
             Other Printing
           </Link>
           <Link
@@ -65,7 +71,10 @@ const Header = () => {
               +919372938392
             </a>
           </div>
-          <button onClick={() => navigate('/dashboard')} className='relative'>
+          <button
+            onClick={() => navigate('/dashboard?tab=cart')}
+            className='relative'
+          >
             {cartItem.length > 0 && (
               <p className='w-4 h-4 p-3 rounded-full bg-blue-500 absolute flex items-center justify-center text-white -top-3 right-0'>
                 {cartItem.length}
@@ -75,7 +84,7 @@ const Header = () => {
           </button>
           {isAuthenticated && userData?.avatar ? (
             <img
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/dashboard?tab=account')}
               className='w-12 h-12 rounded-full cursor-pointer'
               src={userData.avatar}
               alt='profile pic'

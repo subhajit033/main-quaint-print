@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
           Thank you for shopping with us
         </p>
         <Button
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate('/dashboard?tab=billing')}
           className='bg-green-600 hover:bg-green-400 mt-4'
         >
           Go Dashboard

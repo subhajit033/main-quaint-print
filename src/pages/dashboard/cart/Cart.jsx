@@ -267,7 +267,7 @@ const Cart = () => {
                   {cartItem.map((item, i) => {
                     return (
                       <p key={i}>
-                        {`${item?.price} X ${item.quantity} = ${
+                        {`₹${item?.price} X ${item.quantity} = ₹${
                           Number(item?.price) * Number(item?.quantity)
                         }`}
                       </p>
@@ -278,7 +278,7 @@ const Cart = () => {
                   <p>1500 X 2 = 3000</p> */}
                   <div className='h-[2px] w-full bg-black' />
                   <p className='text-xl font-semibold text-blue-500'>
-                    Total Value - {cartValue}
+                    Total Value = ₹{cartValue}
                   </p>
                 </div>
               </div>

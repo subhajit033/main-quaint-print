@@ -8,18 +8,20 @@ import Cart from '@/pages/dashboard/cart/Cart';
 import Billing from '@/pages/dashboard/billing/Billing';
 import { ApiService } from '@/api/api.service';
 import { setCartItem } from '@/redux/cart.slice';
-
+import { useSearchParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 
 const DashboardLayout = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState('');
   const cartItem = useSelector((store) => store.cart.cartItem);
   const isAuthenticated = useSelector((store) => store.auth.isAuthenticated);
   const { isError, isPending, data, isSuccess, refetch } =
     ApiService.productService.useGetAllCartItem(isMounted);
   const dispatch = useDispatch();
+  const [seachParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (isSuccess) {
@@ -42,6 +44,13 @@ const DashboardLayout = () => {
     }
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    // console.log(seachParams.get('tab'));
+    if (seachParams.has('tab')) {
+      setActiveTab(seachParams.get('tab'));
+    }
+  }, [seachParams]);
+
   return (
     <ProtectedRoute>
       <>
@@ -49,17 +58,42 @@ const DashboardLayout = () => {
         <div className='flex'>
           <Sidebar />
           <div className='flex-1 w-full p-1 md:p-6 relative'>
-            <Tabs defaultValue='account' className='w-full'>
+            <Tabs value={activeTab} defaultValue='account' className='w-full'>
               <TabsList>
-                <TabsTrigger value='account'>Account Setting</TabsTrigger>
-                <TabsTrigger className='relative' value='cart'>
+                <TabsTrigger
+                  onClick={() => {
+                    setActiveTab('account');
+                    setSearchParams({ tab: 'account' });
+                  }}
+                  value='account'
+                >
+                  Account Setting
+                </TabsTrigger>
+                <TabsTrigger
+                  onClick={() => {
+                    setActiveTab('cart');
+                    setSearchParams({ tab: 'cart' });
+                  }}
+                  id='cart-tab'
+                  className='relative'
+                  value='cart'
+                >
                   Your Cart
                   <p className='w-4 h-4 p-3 rounded-full bg-blue-500 absolute flex items-center justify-center text-white -top-3 right-0'>
                     {cartItem.length}
                   </p>
                 </TabsTrigger>
-                <TabsTrigger value='billing'>Billing</TabsTrigger>
-                <TabsTrigger value='notify'>Notifications</TabsTrigger>
+                <TabsTrigger
+                  onClick={() => {
+                    setActiveTab('billing');
+                    setSearchParams({ tab: 'billing' });
+                    // console.log('tab click');
+                  }}
+                  value='billing'
+                >
+                  Orders
+                </TabsTrigger>
+                {/* <TabsTrigger value='notify'>Notifications</TabsTrigger> */}
               </TabsList>
               <TabsContent className='p-4' value='account'>
                 <EditDetails />
