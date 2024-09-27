@@ -16,13 +16,13 @@ const CanvasPrintingVariation = () => {
           results every time.
         </p>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-4 gap-6 place-items-center'>
+      {/* <div className='grid grid-cols-1 lg:grid-cols-4 gap-6 place-items-center'>
         {Array(4)
           .fill('-')
           .map((_, i) => {
             return <ProductCard key={i} />;
           })}
-      </div>
+      </div> */}
       {/* <div className="lg:hidden">
         <Marquee className="">
         {

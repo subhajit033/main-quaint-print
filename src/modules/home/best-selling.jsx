@@ -25,9 +25,9 @@ const BestSelling = () => {
         <p className='text-2xl text-center text-gray-400'>Lorem Ipsum dolar</p>
       </div>
       {isSuccess && (
-        <div className='cardsSection grid grid-cols-1 justify-items-center  lg:grid-cols-4 lg:gap-y-8 mx-12' >
+        <div className='cardsSection grid grid-cols-1 justify-items-center  lg:grid-cols-4 lg:gap-y-8 mx-12'>
           {data.data.data.data.map((product) => {
-            return <ProductCard key={product._id} {...product} />;
+            return <ProductCard key={product._id} product={product} />;
           })}
         </div>
       )}

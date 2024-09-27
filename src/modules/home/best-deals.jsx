@@ -69,7 +69,7 @@ const BestDeals = () => {
             itemClass='p-16'
           >
             {data.data.data.data.map((product) => {
-              return <ProductCard key={product._id} {...product} />;
+              return <ProductCard key={product._id} product={product} />;
             })}
           </Carousel>
         )}

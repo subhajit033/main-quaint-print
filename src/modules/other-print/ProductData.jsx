@@ -10,16 +10,18 @@ import api from '@/api';
 import { setCartItem } from '@/redux/cart.slice';
 
 const ProductData = () => {
-  const sizeOptions = ['8 x 12', '10 x 14', '12 x 16', '14 x 18'];
+  // const sizeOptions = ['8 x 12', '10 x 14', '12 x 16', '14 x 18'];
+
   const productDetails = useSelector((store) => store.product.productDetails);
   const isAuthenticated = useSelector((store) => store.auth.isAuthenticated);
   const uploadAsset = ApiService.uploadService.useUploadAsset();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = useState('');
-  const [size, setSize] = useState(
-    productDetails.size ? productDetails.size : ''
-  );
+  const [priceDetails, setPriceDetails] = useState(productDetails.price[0]);
+  // const [size, setSize] = useState(
+  //   productDetails.size ? productDetails.size : ''
+  // );
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -55,27 +57,36 @@ const ProductData = () => {
       navigate('/login');
       return;
     }
-    if (!imageUrl || !size) {
+    if (!imageUrl || !priceDetails?.size) {
       toast.error('Image url or size is missing , please select');
       return;
     }
 
     try {
       const res = await api.post(`/users/add-to-cart`, {
-        title: productDetails.artType,
-        price: productDetails.ourPrice,
+        title: productDetails?.title,
+        price: priceDetails?.price,
         image: imageUrl,
-        size,
+        size: priceDetails?.size,
       });
       console.log(res);
 
-      const { _id, image, title, price } = res.data.data.data;
+      const { _id, image, title, price, size } = res.data.data.data;
       dispatch(setCartItem({ _id, title, image, price, quantity: 1, size }));
       toast.success('Item added to cart');
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleSizeChange = (sizeValue) => {
+    console.log('handle size chan');
+    setPriceDetails(
+      productDetails?.price?.filter((data, i) => data?.size === sizeValue)[0]
+    );
+  };
+
+  console.log(priceDetails);
 
   return (
     <div className='flex flex-col items-center md:flex-row md:items-start justify-center gap-8 my-16'>
@@ -120,31 +131,28 @@ const ProductData = () => {
       </div>
       {/**Product details */}
       <div className='space-y-6 ml-4 md:ml-0'>
-        <h1 className='text-3xl text-gray-500'>{productDetails.artType}</h1>
+        <h1 className='text-3xl text-gray-500'>{productDetails.title}</h1>
         {/**About item */}
         <div className='ml-8'>
           <h3 className='text-xl'>About this item</h3>
           <ul className='list-disc'>
-            <li>Long lasting and durable</li>
-            <li>High quality HD prints</li>
-            <li>Unresistant to fading</li>
-            <li>Tightly wrapped canvas and a good solid structure</li>
+            {productDetails?.aboutItem.map((item, i) => {
+              return <li key={i}>{item}</li>;
+            })}
           </ul>
         </div>
         <div>
           <h3 className='mb-2'>Size(Inches)</h3>
           <RadioGroup
+            defaultValue={priceDetails?.size}
             className='flex gap-6'
-            defaultValue={
-              productDetails.size && productDetails.size.replace(/"/g, '')
-            }
-            onValueChange={(value) => setSize(value)}
+            onValueChange={(value) => handleSizeChange(value)}
           >
-            {sizeOptions.map((size, i) => {
+            {productDetails?.price?.map((data, i) => {
               return (
                 <div key={i} className='flex items-center space-x-2'>
-                  <RadioGroupItem value={size} id={i} />
-                  <Label htmlFor={i}>{size}</Label>
+                  <RadioGroupItem value={data?.size} id={i} />
+                  <Label htmlFor={i}>{data?.size}</Label>
                 </div>
               );
             })}
@@ -153,27 +161,28 @@ const ProductData = () => {
         {/**Product details */}
         <div>
           <p>
-            <span className='font-semibold'>Type</span> :{' '}
-            <span className='text-gray-400'>Personalised gift</span>
-          </p>
-          <p>
             <span className='font-semibold'>Item weight</span> :{' '}
-            <span className='text-gray-400'>330 gm</span>
+            <span className='text-gray-400'>{productDetails?.itemWeight}</span>
           </p>
           <p>
             <span className='font-semibold'>Material</span> :{' '}
-            <span className='text-gray-400'>Canvas</span>
+            <span className='text-gray-400'>{productDetails?.material}</span>
           </p>
           <p>
             <span className='font-semibold'>Texture</span> :{' '}
-            <span className='text-gray-400'>Finely woven smooth canvas</span>
+            <span className='text-gray-400'>{productDetails?.texture}</span>
           </p>
         </div>
         <div className='flex items-end gap-8'>
           <div>
-            <p className='text-xl font-semibold text-blue-500'>
-              ₹{productDetails.ourPrice}/-
-            </p>
+            <div className='flex items-center gap-4'>
+              <p className='text-xl font-semibold text-blue-500'>
+                ₹{priceDetails?.price}/-
+              </p>
+              <p className='text-xl font-semibold line-through'>
+                ₹{priceDetails?.marketPrice}/-
+              </p>
+            </div>
             <p>Free Shipping</p>
           </div>
           <button className='text-red-600 border border-red-600 py-2 px-4 rounded-md'>
