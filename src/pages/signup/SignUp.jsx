@@ -30,6 +30,7 @@ const SignUp = () => {
     }
     login.mutate(loginData, {
       onSuccess: (res) => {
+        document.cookie = `user_access_token=${res?.data?.token}`;
         toast.success('Login Successfull');
         dispatch(setAuthentication(true));
 

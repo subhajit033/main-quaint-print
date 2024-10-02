@@ -32,6 +32,7 @@ const Auth = () => {
         };
         googleLogin.mutate(userDetails, {
           onSuccess: (res) => {
+            document.cookie = `user_access_token=${res?.data?.token}`;
             toast.success('Login Successfull');
             dispatch(setAuthentication(true));
 

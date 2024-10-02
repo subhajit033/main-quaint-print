@@ -4,7 +4,10 @@ import { setProductDetails } from '@/redux/productDetails.slice';
 const ProductCard = ({ margin, product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { image, title, price } = product;
+  if (!product) {
+    return null;
+  }
+  const { image, title, price } = product || {};
   const handleClick = () => {
     dispatch(setProductDetails({ ...product }));
     navigate('/product-details');
