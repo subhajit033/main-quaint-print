@@ -22,9 +22,15 @@ const ProductData = () => {
   // const [size, setSize] = useState(
   //   productDetails.size ? productDetails.size : ''
   // );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  if (!productDetails) {
+    navigate('/');
+    return;
+  }
 
   const handleUploadasset = (e) => {
     const upload = new FormData();
