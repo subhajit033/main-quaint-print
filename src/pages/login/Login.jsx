@@ -64,9 +64,8 @@ const Login = () => {
     e.preventDefault();
     login.mutate(loginData, {
       onSuccess: (res) => {
-        document.cookie = `user_access_token=${res?.data?.token}`;
-        console.log(res);
-        document.toast.success('Login Successfull');
+        document.cookie = `user_access_token=${res?.data?.token}`;        
+        toast.success('Login Successfull');
         dispatch(setAuthentication(true));
 
         dispatch(setUserData(res.data.data.data));
