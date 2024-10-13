@@ -59,8 +59,8 @@ const Header = () => {
             Design Services
           </Link>
         </div>
-        <div className='flex items-center gap-4'>
-          <div className='leading-tight hidden lg:block'>
+        <div className='flex items-center gap-8'>
+          {/* <div className='leading-tight hidden lg:block'>
             <p className='flex items-center gap-1 text-sm   text-gray-500'>
               <Phone style={styles.phone} /> Just a one call away
             </p>
@@ -70,7 +70,7 @@ const Header = () => {
             >
               +919372938392
             </a>
-          </div>
+          </div> */}
           <button
             onClick={() => navigate('/dashboard?tab=cart')}
             className='relative'
