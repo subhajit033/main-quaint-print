@@ -54,11 +54,21 @@ const useGoogleLogin = () => {
   });
 };
 
+const useSendMail = () => {
+  return useMutation({
+    mutationKey: 'news-letter-mail',
+    mutationFn: async (body) => {
+      return api.post('/users/send-mail', body);
+    },
+  });
+};
+
 export const userService = {
   useLogin,
   useRegister,
   useUpdateUserDetails,
   useCheckLogin,
   useGetArts,
-  useGoogleLogin
+  useGoogleLogin,
+  useSendMail,
 };
