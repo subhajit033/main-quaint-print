@@ -21,9 +21,9 @@ const Faq = () => {
           .fill('-')
           .map((_, i) => {
             return (
-              <Accordion className='w-[90%]' key={i} type='single' collapsible>
-                <AccordionItem value='item-1'>
-                  <AccordionTrigger className='bg-[#D9D9D9] text-2xl rounded-full px-10'>
+              <Accordion className='w-[90%] ' key={i} type='single' collapsible>
+                <AccordionItem value='item-1' className='bg-[#D9D9D9] rounded-full'>
+                  <AccordionTrigger className=' text-2xl  px-10'>
                     Is it accessible?
                   </AccordionTrigger>
                   <AccordionContent className='px-10'>

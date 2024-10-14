@@ -13,12 +13,16 @@ import choose4 from './choose4.png';
 import choose5 from './choose5.png';
 import choose6 from './choose6.png';
 import chooseBg from './choose-bg.png';
-import client1 from './client1.png';
-import client2 from './client2.png';
-import client3 from './client3.png';
-import client4 from './client4.png';
-import client5 from './client5.png';
-import client6 from './client6.png';
+import client1 from './vetaran_logos/logo1.png';
+import client2 from './vetaran_logos/logo2.png';
+import client3 from './vetaran_logos/logo3.png';
+import client4 from './vetaran_logos/logo4.png';
+import client5 from './vetaran_logos/logo5.png';
+import client6 from './vetaran_logos/logo6.png';
+import client7 from './vetaran_logos/logo7.png';
+import client8 from './vetaran_logos/logo8.png';
+import client9 from './vetaran_logos/logo9.png';
+import client10 from './vetaran_logos/logo10.png';
 import NewsletterBg from './newsletter.png';
 import AuthTop from './auth_top.png';
 
@@ -44,6 +48,10 @@ export {
   client4,
   client5,
   client6,
+  client7,
+  client8,
+  client9,
+  client10,
   NewsletterBg,
   AuthTop,
 };

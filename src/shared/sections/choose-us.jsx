@@ -32,7 +32,7 @@ const ChooseUs = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
-      className={`w-full  lg:h-[67rem]  py-20 space-y-6`}
+      className={`w-full  py-20 space-y-6`}
 
     >
       {/* <img className='absolute w-full h-full -z-10' src={chooseBg} alt='bg' /> */}
@@ -53,8 +53,8 @@ const ChooseUs = () => {
         </p>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: "center", padding: '0rem 1rem' }}>
-        <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10  ">
+      <div className='w-[80%]  mx-auto' style={{ display: 'flex', justifyContent: "center", padding: '0rem 1rem' }}>
+        <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 mt-8 ">
           {/* Card 1 */}
           <ChooseUsCard
             icon={icon1}
