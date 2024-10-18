@@ -28,17 +28,17 @@ const ContactUsForm = () => {
     }
   };
   return (
-    <div className='p-6 w-96 lg:w-[32rem] bg-white rounded-3xl border border-gray-600'>
+    <div className='p-[30px] w-[100%] bg-white rounded-3xl border border-[#EFE7EA]'>
       <h1 className='text-4xl font-semibold'>Get in touch</h1>
       <p className='text-lg text-gray-500 mb-8'>You can reach us anytime</p>
       <form onSubmit={sendEnq}>
         <div className='flex flex-col items-center gap-4'>
-          <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-3 w-full'>
             <input
               name='firstName'
               type='text'
               required
-              className='w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-8 py-3.5 rounded-full outline-blue-600'
+              className='w-full text-[16px] text-gray-800 border border-gray-300 focus:bg-transparent px-6 py-3 rounded-full outline-blue-600'
               placeholder='Enter fisrt name'
               onChange={onChangehandler}
             />
@@ -46,7 +46,7 @@ const ContactUsForm = () => {
               name='lastName'
               type='text'
               required
-              className='w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-8 py-3.5 rounded-full outline-blue-600'
+              className='w-full text-sm text-gray-800 border border-gray-300 focus:bg-transparent px-6 py-3 rounded-full outline-blue-600'
               placeholder='Enter last name'
               onChange={onChangehandler}
             />
@@ -56,7 +56,7 @@ const ContactUsForm = () => {
               name='email'
               type='text'
               required
-              className='w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-12 py-3.5 rounded-full outline-blue-600'
+              className='w-full text-sm text-gray-800 border border-gray-300 focus:bg-transparent px-12 py-3 rounded-full outline-blue-600'
               placeholder='Enter email'
               onChange={onChangehandler}
             />
@@ -96,7 +96,7 @@ const ContactUsForm = () => {
               name='contactNo'
               type='text'
               required
-              className='w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-12 py-3.5 rounded-full outline-blue-600'
+              className='w-full text-sm text-gray-800 border border-gray-300 focus:bg-transparent px-12 py-3 rounded-full outline-blue-600'
               placeholder='Phone No'
               onChange={onChangehandler}
             />
@@ -106,7 +106,7 @@ const ContactUsForm = () => {
           <textarea
             rows={7}
             onChange={(e) => setMessage(e.target.value)}
-            className='w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-8 py-3.5 rounded-xl outline-blue-600'
+            className='w-full text-sm text-gray-800 border border-gray-300 focus:bg-transparent px-6 py-3 rounded-xl outline-blue-600'
             placeholder='type you message here'
             required
           />
@@ -121,7 +121,7 @@ const ContactUsForm = () => {
           </button>
         </div>
       </form>
-      <p className='text-center text-gray-700 pt-7'>By Contacting us you agree to our <span className='font-semibold'>Terms<br/>
+      <p className='text-center text-[#6E6E73] pt-7'>By Contacting us you agree to our <span className='font-semibold'>Terms<br/>
       of Service</span> and <span className='font-semibold'>Privacy Policy</span></p>
     </div>
   );

@@ -60,7 +60,7 @@ const Hero = () => {
                 return (
                   <SwiperSlide className='!h-[80vh]' key={i}>
                     <img
-                      className='!w-screen h-[80vh] object-cover'
+                      className='!w-full h-[80%] object-cover'
                       src={src.image}
                       alt='image'
                     />

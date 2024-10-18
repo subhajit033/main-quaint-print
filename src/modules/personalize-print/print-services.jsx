@@ -1,13 +1,14 @@
 import { Button } from '@/components/ui/button';
 import PrintCard from '@/shared/cards/PrintCard';
 
+
 const PrintServices = () => {
   return (
-    <div className='px-4 lg:px-20 py-10 mx-10'>
-      <div className='flex items-end gap-12 mb-8 mx-10'>
-        <div className='space-y-2'>
-          <h3 className='text-3xl font-medium kalamText'>Personalized Printing Services</h3>
-          <h1 className='text-5xl font-bold'>
+    <div className='px-4 lg:px-20 py-10 mx-2 sm:mx-10'>
+      <div className='flex flex-col items-center sm:items-start xl:flex-row  xl:items-center gap-12 mb-8  sm:mx-10 sm:w-[95%] w-[90%] mx-auto'>
+        <div className='space-y-2 sm:text-left text-center'>
+          <h3 className='text-2xl sm:text-3xl font-medium kalamText'>Personalized Printing Services</h3>
+          <h1 className='text-3xl sm:text-4xl lg:text-5xl font-semibold'>
             Tailored Prints for Every Occasion
           </h1>
           <p className='text-base font-medium text-gray-500 w-full lg:w-[80%]'>
@@ -21,9 +22,9 @@ const PrintServices = () => {
             special as the moments they capture.
           </p>
         </div>
-        <Button className='bg-gray-200 text-black text-lg  py-10 px-14 '>Get Started</Button>
+        <Button className='bg-gray-200 text-black  text-lg w-fit  py-10 px-14 '>Get Started</Button>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-4 my-10 justify-self-center mx-5'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 my-10 justify-self-center mx-4 sm:mx-10 gap-4'>
         {Array(4)
           .fill('-')
           .map((_, i) => {

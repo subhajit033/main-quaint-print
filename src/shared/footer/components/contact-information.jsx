@@ -3,23 +3,23 @@ import peyment from '../../../assets/payment.png'
 
 const ContactInformation = () => {
   return (
-    <div  className='hidden border-t  px-40 py-10 lg:flex items-start justify-center'>
+    <div  className=' w-full border-t gap-y-12  px-4 sm:px-20 lg:px-40 py-10 flex flex-row flex-wrap justify-center items-start sm:justify-between'>
       {/**Left side */}
-      <div className='flex-1 flex flex-col justify-between h-80'>
-        <h1 className='text-5xl font-bold text-pink-800'>Say Hello</h1>
+      <div className='w-[80%] text-center sm:text-left xl:w-[30%] flex flex-col  justify-center sm:justify-between h-80'>
+        <h1 className='text-5xl font-bold text-pink-800 mb-2'>Say Hello</h1>
         <div className="space-y-6">
           <div className="space-y-6">
-            <p className='text-gray-600 font-semibold text-2xl'>Stay updated on newss</p>
-            <form className='relative w-[90%]'>
+            <p className='text-gray-600 font-semibold text-2xl'>Stay updated on news</p>
+            <form className='relative w-[90%] mx-auto sm:mx-0 border border-black  px-1.5 py-1.5 rounded-full flex flex-row'>
               <input
                 required
-                className='border border-black w-full px-7 py-3 rounded-full'
+                className=' focus:outline-none rounded-full pl-6 w-full text-[16px]'
                 type='email'
                 placeholder='You email'
               />
               <button
                 type='submit'
-                className='px-4 py-1.5 rounded-full bg-[#84142E] text-white text-sm font-semibold absolute right-1.5 top-2.5'
+                className='px-6 py-2.5 rounded-full bg-[#84142E] text-white text-sm font-semibold '
               >
                 Subscribe
               </button>
@@ -29,7 +29,7 @@ const ContactInformation = () => {
         </div>
       </div>
       {/**middle side */}
-      <div className='flex-1 flex flex-col items-center '>
+      <div className='w-[80%] sm:w-[40%] xl:w-[30%] flex flex-col sm:items-start items-center text-center sm:text-left '>
         <div className='space-y-4'>
           <div>
             <h1 className='text-3xl font-semibold'>For Business</h1>
@@ -51,14 +51,14 @@ const ContactInformation = () => {
       </div>
       {/**right side */}
 
-      <div className='flex-1  flex justify-end w-full'>
-        <div className=" w-[60%] space-y-4">
-          <h1 className="text-3xl font-semibold">Contact</h1>
+      <div className='w-[80%] sm:w-[40%] xl:w-[30%]  flex flex-col sm:items-start items-center text-center sm:text-left '>
+        <div className=" w-[100%] space-y-4">
+          <h1 className="text-3xl font-semibold">Address</h1>
           <p className='text-black-800 font-medium text-lg '>
             Office 1, Second Floor, Indira y , Gangapur Rd, Near Pramod Mahajan
             Garden, Old Gangapur Naka, Nashik, Maharashtra, 422005
           </p>
-          <p className='text-black-800 font-medium text-lg '>+91 93729 38392</p>
+          <p className='text-black-800 font-medium text-lg '>+91 00000 00000</p>
           <p className='text-black-800 font-medium text-lg '>See on map</p>
           <img src={peyment} style={{width:"100%",height:"auto"}}/>
         </div>
