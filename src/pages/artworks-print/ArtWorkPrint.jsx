@@ -67,9 +67,10 @@ const ArtWorkPrint = () => {
   }, [isSuccess]);
   console.log(data);
   return (
-    <div style={{display:"flex" ,flexDirection:"column" ,}}>
+    <div style={{ display: "flex", flexDirection: "column", }}>
       <div className='flex justify-center items-center my-8'>
-        <h1 className='w-full lg:w-[40%] text-center text-3xl lg:text-6xl font-semibold'>
+
+        <h1 className='w-full lg:w-[60%] text-center text-4xl lg:text-[56px] font-semibold '>
           Preserve memories you cherish forever
         </h1>
       </div>
@@ -113,13 +114,13 @@ const ArtWorkPrint = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col justify-center items-center my-8 gap-8'>
-        <h1 className='lg:w-[60%]  font-bold text-center text-2xl lg:text-5xl text-black-500'>
-          Hello artists<br/> Earning money from artwork prints is easy now.
+      <div className='flex flex-col justify-center items-center my-8 gap-8 w-[90%] mx-auto'>
+        <h1 className='lg:w-[60%]  font-semibold text-center text-2xl lg:text-5xl text-black-500'>
+          Hello artists<br /> Earning money from artwork prints is easy now.
         </h1>
-        <p className='text-lg text-gray-600 font-semibold lg:w-[35%] text-center'>
+        <p className='text-lg text-gray-600 font-semibold lg:w-[50%] text-center'>
           Earning money from your artwork through printing has never been
-          easier. Join us at Veteran Medias LLP and transform your creations
+          easier. <br /> Join us at Veteran Medias LLP and transform your creations
           into profitable prints today!
         </p>
       </div>
@@ -132,7 +133,7 @@ const ArtWorkPrint = () => {
         </Link>
       </div>
       <div className='h-[1px] w-full bg-gray-300 my-4' />
-      <div className='flex items-center justify-center my-8 gap-8'>
+      <div className='flex flex-col sm:flex-row items-center justify-center my-8 gap-4 sm:gap-8 w-[90%] mx-auto'>
         <Label className='text-2xl'>Handwork Prints</Label>
         <Switch
           onCheckedChange={() => setIsChecked(!isChecked)}
@@ -141,24 +142,24 @@ const ArtWorkPrint = () => {
         <Label className='text-2xl'>Digital Art Print</Label>
       </div>
       {
-        <div style={{display:'flex',flexDirection:"row",justifyContent:"center",gap:"5rem"}}>
+        <div className=' w-[90%] lg:w-[70%] mx-auto flex flex-row justify-evenly gap-5 overflow-x-auto px-4'>
           {isChecked
             ? digitalArt.map((name) => {
-                return (
-                  <div className='flex flex-col  items-center ' key={name}>
-                    <div className='w-14 h-14 bg-gray-200 '></div>
-                    <p className='text-base font-semibold '>{name}</p>
-                  </div>
-                );
-              })
+              return (
+                <div className='flex flex-col  items-center ' key={name}>
+                  <div className='w-14 h-14 bg-gray-200 '></div>
+                  <p className='text-base text-nowrap font-semibold '>{name}</p>
+                </div>
+              );
+            })
             : handWorkWrtTypes.map((name) => {
-                return (
-                  <div className='flex flex-col items-center' key={name}>
-                    <div className='w-14 h-14 bg-gray-200'></div>
-                    <p className='text-base font-semibold'>{name}</p>
-                  </div>
-                );
-              })}
+              return (
+                <div className='flex flex-col items-center' key={name}>
+                  <div className='w-14 h-14 bg-gray-200'></div>
+                  <p className='text-base text-nowrap font-semibold'>{name}</p>
+                </div>
+              );
+            })}
         </div>
       }
       <div className='grid grid-cols-1 md:grid-cols-2 mt-20  gap-y-5' >

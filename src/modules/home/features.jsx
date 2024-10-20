@@ -20,7 +20,7 @@ const Features = () => {
     },
   ];
   return (
-    <section className='h-24 w-full px-4 lg:px-0 space-y-2 py-10 lg:flex items-center justify-around mb-28 lg:mb-0' style={style.section}>
+    <section className='h-24 w-full  sm:!py-8 xl:overflow-hidden overflow-y-hidden   space-y-2 py-10 overflow-x-scroll text-nowrap flex items-center justify-start lg:justify-center mb-28 gap-12  xl:gap-24 ' style={style.section}>
       {feat.map((feat, i) => {
         return (
           <p
@@ -42,8 +42,8 @@ export default Features;
 
 const style = {
   section:{
-    columnGap:'100px',
-    justifyContent:'center',
-    padding:'80px 0px'
+  
+  
+    padding:'100px 0px'
   }
 }

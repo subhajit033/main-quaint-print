@@ -12,8 +12,8 @@ const Offers = () => {
   return (
     <div className='px-0 lg:px-20  lg:my-0'>
       <div className='hidden lg:flex justify-center gap-10'>
-        <img className='w-[40rem]' src={offer1} alt='offer1' />
-        <img className='w-[40rem]' src={offer2} alt='offer2' />
+        <img className='w-[45%]' src={offer1} alt='offer1' />
+        <img className='w-[45%]' src={offer2} alt='offer2' />
       </div>
       <div className=' lg:hidden'>
         <Swiper
@@ -38,10 +38,10 @@ const Offers = () => {
         </Swiper>
       </div>
 
-      <section className='container section-my h-16 w-full border border-[#7000FF] border-dashed bg-[#F1E2FF] rounded-lg flex items-center justify-center my-10'>
-        <p className='flex items-center gap-2'>
+      <section className=' w-[90%] sm:container section-my py-4    border border-[#7000FF] border-dashed bg-[#F1E2FF] rounded-lg flex items-center justify-center my-10'>
+        <p className='flex items-center flex-col md:flex-row gap-2 md:text-left text-center'>
           <img src={deliveryCar} alt='delivery car' />
-          <p className='text-xs md:text-base font-semibold text-black-600'>
+          <p className='text-base md:text-lg font-semibold text-black-600'>
             Over <span className='text-[#4B0DFD]'>1.5 thousands</span> items
             shipped every month! Veteran makes them a reality.
           </p>

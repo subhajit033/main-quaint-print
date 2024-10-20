@@ -6,6 +6,10 @@ import {
   client4,
   client5,
   client6,
+  client7,
+  client8,
+  client9,
+  client10
 } from '@/assets/assets';
 
 const CompanyLogo = ({ image }) => {
@@ -13,7 +17,7 @@ const CompanyLogo = ({ image }) => {
 };
 
 const Clients = () => {
-  const clients = [client1, client2, client3, client4, client5, client6];
+  const clients = [client1, client2, client3, client4, client5, client6,client7,client8,client9,client10];
   return (
     <div className='px-4 lg:px-20 py-20'>
       <div>

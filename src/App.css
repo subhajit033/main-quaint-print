@@ -1,8 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/mona-sans');
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+}
+
+body{
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .logo {
@@ -40,7 +46,18 @@
 .read-the-docs {
   color: #888;
 }
+.swiper{
+  width: 100% !important;
+}
 
-
-
-/* common */
+*{
+  scrollbar-width: thin; /* For Firefox */
+-ms-overflow-style: none; /* For Internet Explorer and Edge */
+scrollbar-color: #333 #666; /* For Firefox */
+-ms-scrollbar-3dlight-color: #333; /* For Internet Explorer and Edge */
+-ms-scrollbar-darkshadow-color: #666; /* For Internet Explorer and Edge */
+-ms-scrollbar-face-color: #333; /* For Internet Explorer and Edge */
+-ms-scrollbar-highlight-color: #666; /* For Internet Explorer and Edge */
+  -ms-scrollbar-shadow-color: #333; /* For Internet Explorer and Edge */
+  -ms-scrollbar-track-color: #666; /* For Internet Explorer and Edge */
+}

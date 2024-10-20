@@ -13,36 +13,48 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Features />
+      <Features/>
       <Offers />
       <BestDeals />
-      <div className='flex w-screen overflow-x-auto md:overflow-x-hidden md:w-full  justify-center items-center gap-12 bg-blue-100 py-4 mt-20'>
-        <Marquee>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='printer.png' alt='printer' />
-            <p className='font-medium text-xl'>OTHER PRINTING</p>
+      <div className=' w-full  bg-blue-100  mt-20 2xl:overflow-hidden overflow-y-hidden overflow-x-scroll'>
+        <div className="w-[80%] mx-auto flex  text-nowrap  justify-start  xl:justify-center items-center gap-24 xl:gap-12 py-4 "  >
+        <div className='!w-fit flex items-center gap-4'>
+         <div className='w-5'>
+         <img src='printer.png' alt='printer' />
+         </div>
+          <p className='font-medium text-xl'>OTHER PRINTING</p>
+        </div>
+        <div className='flex items-center gap-4'>
+        <div className='w-5'>
+        <img  src='surprise.png' alt='printer' />
+        </div>
+          <p className='font-medium text-xl'>GIFTING PRINTING</p>
+        </div>
+        <div className='flex items-center gap-4'>
+          <div className='w-5'>
+          <img src='canvas.png' alt='printer' />
           </div>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='surprise.png' alt='printer' />
-            <p className='font-medium text-xl'>GIFTING PRINTING</p>
+          <p className='font-medium text-xl'>CANVAS PRINTING</p>
+        </div>
+        <div className='flex items-center gap-4'>
+          <div className='w-5'>
+          <img src='printer.png' alt='printer' />
           </div>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='canvas.png' alt='printer' />
-            <p className='font-medium text-xl'>CANVAS PRINTING</p>
-          </div>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='printer.png' alt='printer' />
-            <p className='font-medium text-xl'>OTHER PRINTING</p>
-          </div>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='surprise.png' alt='printer' />
-            <p className='font-medium text-xl'>GIFTING PRINTING</p>
-          </div>
-          <div className='flex items-center gap-4 mx-8'>
-            <img className='w-10 h-10' src='canvas.png' alt='printer' />
-            <p className='font-medium text-xl'>CANVAS PRINTING</p>
-          </div>
-        </Marquee>
+          <p className='font-medium text-xl'>OTHER PRINTING</p>
+        </div>
+        <div className='flex items-center gap-4'>
+        <div className='w-5'>
+        <img  src='surprise.png' alt='printer' />
+        </div>
+          <p className='font-medium text-xl'>GIFTING PRINTING</p>
+        </div>
+        <div className='flex items-center gap-4'>
+         <div className='w-5'>
+         <img  src='canvas.png' alt='printer' />
+         </div>
+          <p className='font-medium text-xl'>CANVAS PRINTING</p>
+        </div>
+        </div>
       </div>
       <BestSelling />
       <FeatureBanner />

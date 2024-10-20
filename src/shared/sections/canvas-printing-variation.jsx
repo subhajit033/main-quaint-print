@@ -4,12 +4,12 @@ import Marquee from 'react-fast-marquee';
 const CanvasPrintingVariation = () => {
   return (
     <div className='px-4 lg:px-20 py-10'>
-      <div className='flex flex-col items-start lg:items-center gap-3 mb-8'>
-        <h3 className='kalamText text-4xl'>Canvas Printing variation</h3>
-        <h1 className='text-5xl font-bold'>
+      <div className='flex flex-col items-center gap-3 mb-8'>
+        <h3 className='kalamText text-2xl sm:text-3xl text-center'>Canvas Printing variation</h3>
+        <h1 className='text-3xl sm:text-4xl lg:text-5xl font-semibold text-center'>
           Diverse Options for Your Unique Needs
         </h1>
-        <p className='text-lg font-semibold text-gray-500 text-center lg:w-[60%]'>
+        <p className='text-lg font-medium text-gray-500 text-center  sm:w-[80%]'> 
           We offer a variety of canvas printing options to suit any preference
           or occasion. From classic to panoramic and custom designs, our
           high-quality materials and precision craftsmanship ensure stunning

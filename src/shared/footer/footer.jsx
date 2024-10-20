@@ -1,6 +1,6 @@
 import Faq from './components/faq';
 import GetInTouch from './components/get-in-touch';
-import Newsletter from './components/newsletter';
+import Blogs from './components/Blogs';
 import ContactInformation from './components/contact-information';
 
 const Footer = () => {
@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <Faq />
       <GetInTouch />
-      <Newsletter />
+      <Blogs />
       <ContactInformation />
     </>
   );

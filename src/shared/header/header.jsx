@@ -14,25 +14,26 @@ const Header = () => {
   const isAuthenticated = useSelector((store) => store.auth.isAuthenticated);
   const navigate = useNavigate();
   return (
-    <nav className='py-6 lg:py-0 relative'>
+    <nav className='py-0 relative'>
       <div
         style={{
           background:
             'radial-gradient(circle, rgba(147,39,255,1) 9%, rgba(173,0,83,1) 90%)',
         }}
-        className='h-10 w-full hidden lg:flex justify-center items-center'
+        className='h-10 w-full py-2 flex justify-center items-center'
       >
-        <p className='lg:flex items-center text-sm font-semibold text-gray-200 gap-4'>
+        <p className='flex items-center  sm:text-left text-center text-sm font-semibold text-gray-200 gap-4'>
           <Ambulance /> With FREESHIPPING, orders of ₹ 5000+ get free shipping
         </p>
       </div>
-      <div className='flex justify-between px-16 lg:py-4 lg:justify-around'>
+
+      <div className='flex justify-between px-2 md:px-16 lg:py-4 lg:justify-around'>
         <h1>
           <Link to={'/'}>
             <img className='w-40' src={logo} alt='logo of quaintprints.com' />
           </Link>
         </h1>
-        <div className='hidden lg:flex items-center gap-10 '>
+        <div className='hidden lg:flex items-center gap-6 '>
           <Link
             to={'/personalize-print'}
             className='font-semibold text-lg text-black-500'
@@ -65,10 +66,10 @@ const Header = () => {
               <Phone style={styles.phone} /> Just a one call away
             </p>
             <a
-              href='tel: +919372938392'
+              href='tel: +91000000000'
               className='text-blue-600 font-semibold text-lg'
             >
-              +919372938392
+              +91000000000
             </a>
           </div> */}
           <button
@@ -97,7 +98,7 @@ const Header = () => {
           )}
           <MenuIcon
             onClick={() => setIsMenuVisible(!isMemuVisible)}
-            className='md:hidden'
+            className='lg:hidden'
           />
           {isMemuVisible && (
             <div className='absolute flex flex-col md:hidden top-20 p-4 w-56 rounded-xl shadow-xl right-0 z-50 bg-white'>
