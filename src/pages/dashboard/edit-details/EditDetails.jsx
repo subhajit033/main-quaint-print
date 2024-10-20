@@ -222,7 +222,7 @@ const EditDetails = () => {
         </div>
         <div className='w-full h-[1px] bg-gray-400' />
         {/** bank Details*/}
-        <div className='my-4'>
+        {/* <div className='my-4'>
           <p className='font-semibold text-gray-500'>Account Details</p>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
             <div className='grid w-full max-w-sm items-center gap-1.5'>
@@ -279,8 +279,8 @@ const EditDetails = () => {
               />
             </div>
           </div>
-        </div>
-        <div className='w-full flex justify-end'>
+        </div> */}
+        <div className='w-full flex justify-end mt-4'>
           <button
             type='submit'
             className='px-4 py-2 rounded-full bg-blue-100 border border-blue-200 flex items-center gap-2 font-semibold text-blue-600'

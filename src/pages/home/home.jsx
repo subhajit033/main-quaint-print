@@ -7,6 +7,7 @@ import FeatureBanner from '@/shared/sections/FeatureBanner';
 import ChooseUs from '@/shared/sections/choose-us';
 import Clients from '@/modules/home/clients';
 import ClientsMvp from '@/shared/sections/ClientsMvp';
+import Marquee from 'react-fast-marquee';
 
 const Home = () => {
   return (

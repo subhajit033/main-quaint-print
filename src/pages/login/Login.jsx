@@ -66,7 +66,8 @@ const Login = () => {
       onSuccess: (res) => {
         document.cookie = `user_access_token=${res?.data?.token}`;
         console.log(res);
-        document.toast.success('Login Successfull');
+
+        toast.success('Login Successfull');
         dispatch(setAuthentication(true));
 
         dispatch(setUserData(res.data.data.data));

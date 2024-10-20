@@ -63,10 +63,10 @@ const Sidebar = () => {
           <p>160</p>
         </div>
       </div>
-      <div className='w-full p-4 border-2 border-gray-500 rounded-lg  text-gray-600'>
+      {/* <div className='w-full p-4 border-2 border-gray-500 rounded-lg  text-gray-600'>
         <p>Bank Details</p>
         <p>HDFC Thete Nagar, Nashik</p>
-      </div>
+      </div> */}
       <div className='w-full p-4 border-2 border-gray-500 rounded-lg'>
         <h4 className='font-semibold border-b border-gray-500 pb-2'>
           Check Payment Status

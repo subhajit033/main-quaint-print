@@ -1,7 +1,25 @@
-import peyment from '../../../assets/payment.png'
-
-
+import peyment from '../../../assets/payment.png';
+import { userService } from '@/api/user.service';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 const ContactInformation = () => {
+  const sendNewsMail = userService.useSendMail();
+  const [email, setEmail] = useState('');
+  const handleSubmitform = (e) => {
+    e.preventDefault();
+    sendNewsMail.mutate(
+      { email },
+      {
+        onSuccess: () => {
+          toast.success('Thank you for Subscribing our newsletter');
+        },
+        onError: () => {
+          toast.error('Invalid Email');
+        },
+      }
+    );
+  };
+
   return (
     <div  className=' w-full border-t gap-y-12  px-4 sm:px-20 lg:px-40 py-10 flex flex-row flex-wrap justify-center items-start sm:justify-between'>
       {/**Left side */}
@@ -16,6 +34,7 @@ const ContactInformation = () => {
                 className=' focus:outline-none rounded-full pl-6 w-full text-[16px]'
                 type='email'
                 placeholder='You email'
+                onChange={(e) => setEmail(e.target.value)}
               />
               <button
                 type='submit'
@@ -25,7 +44,9 @@ const ContactInformation = () => {
               </button>
             </form>
           </div>
-          <p className="text-gray-500 font-semibold">ⓒ 2024 Veteran medias LLP. All Rights Reserved</p>
+          <p className='text-gray-500 font-semibold'>
+            ⓒ 2024 Veteran medias LLP. All Rights Reserved
+          </p>
         </div>
       </div>
       {/**middle side */}
@@ -33,19 +54,19 @@ const ContactInformation = () => {
         <div className='space-y-4'>
           <div>
             <h1 className='text-3xl font-semibold'>For Business</h1>
-            <p className="text-lg font-normal">info@veteranmedias.com</p>
-            <p className="text-lg font-normal">veteranmedias@gmail.com</p>
+            <p className='text-lg font-normal'>info@veteranmedias.com</p>
+            <p className='text-lg font-normal'>veteranmedias@gmail.com</p>
           </div>
           <div>
             <h1 className='text-3xl font-medium'>Follow Us</h1>
-            <p className="text-lg font-normal">LinkedIn</p>
-            <p className="text-lg font-normal">Instagram</p>
-            <p className="text-lg font-normal">Facebook</p>
+            <p className='text-lg font-normal'>LinkedIn</p>
+            <p className='text-lg font-normal'>Instagram</p>
+            <p className='text-lg font-normal'>Facebook</p>
           </div>
           <div>
             <h1 className='text-3xl font-semibold'>Legal </h1>
-            <p className="text-lg font-normal">Cookie Policy</p>
-            <p className="text-lg font-normal">Privacy Policy</p>
+            <p className='text-lg font-normal'>Cookie Policy</p>
+            <p className='text-lg font-normal'>Privacy Policy</p>
           </div>
         </div>
       </div>
@@ -60,7 +81,7 @@ const ContactInformation = () => {
           </p>
           <p className='text-black-800 font-medium text-lg '>+91 00000 00000</p>
           <p className='text-black-800 font-medium text-lg '>See on map</p>
-          <img src={peyment} style={{width:"100%",height:"auto"}}/>
+          <img src={peyment} style={{ width: '100%', height: 'auto' }} />
         </div>
       </div>
     </div>
