@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import axios from 'axios';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,25 @@ const Cart = () => {
   };
 
   console.log(cartIds);
+
+  const handlePincodeCheck = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `https://track.delhivery.com/c/api/pin-codes/json/?token=ca78f9ce82194208e103b2558a4c844b22abd27f&filter_codes=${address.zipCode}`
+      );
+      const data = await res.json();
+      /**
+       * (e) => {
+                  e.preventDefault();
+                  setIsDia1Open(false), setIsDia2Open(true);
+                }
+       */
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   async function displayRazorpay(e) {
     e.preventDefault();
@@ -160,13 +180,7 @@ const Cart = () => {
                   details
                 </p>
               )}
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setIsDia1Open(false), setIsDia2Open(true);
-                }}
-                className='my-4'
-              >
+              <form onSubmit={handlePincodeCheck} className='my-4'>
                 <p className='font-semibold text-gray-500'>Address</p>
                 <div className='grid grid-cols-1 md:grid-cols-6 gap-4 items-center'>
                   <div className='grid col-span-2 w-full max-w-sm items-center gap-1.5'>

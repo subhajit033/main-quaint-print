@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { ApiService } from '@/api/api.service';
 import { useState } from 'react';
-// import AuthLayout from '@/layout/AuthLayout';
+import { loginBg } from '@/assets/assets';
 import toast from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 import { setAuthentication, setUserData } from '@/redux/auth.slice';
@@ -52,7 +52,10 @@ const SignUp = () => {
     setLoginData({ ...loginData, [name]: value });
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-[url('https://s3-alpha-sig.figma.com/img/dbe5/a32a/2b560528ce27966e2c86e01205ee56f8?Expires=1723420800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qeCCRqp~3nY5zNPYkMy5CG0-oLJv30aCELK1uKaEoHWC2ECNFOO19YxDoQvhD0C-SY9xskeclrDAA~EYlOS0auPLxx7mRNG22DMpmIXdU3ru0ENOikUr7XHICJ5MtG5-L8FsvxV1kh2YkqZkBlHuv0d8GD02B1uof7lMJb4fTwXeZ4ir8fBv1DuRqOrmn1qFefgdNBdUZbmgLwfTVH8CgnjDi5a2pn60Qt--uSWtADCPdUNyYPr6asu5u5pppqgBzAnx84XJgmm~7sck5L4Ghj04d0t1s2a8ON5OZq0x0NmcGfhhWCGn7SiyFNRDw24c2y67lPtk6aQRha-GdSnB2w__')] bg-cover">
+    <div
+      style={{ backgroundImage: `url("${loginBg}")` }}
+      className='w-full h-screen flex justify-center items-center bg-cover'
+    >
       <div className='p-6 w-[26rem] bg-white rounded-3xl'>
         <div className='my-2'>
           <p className='text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#FF237D] to-[#C9110A] text-center'>

@@ -25,8 +25,10 @@ import client9 from './vetaran_logos/logo9.png';
 import client10 from './vetaran_logos/logo10.png';
 import NewsletterBg from './newsletter.png';
 import AuthTop from './auth_top.png';
+import loginBg from './loginBg.png';
 
 export {
+  loginBg,
   logo,
   heroImg,
   headphone,
